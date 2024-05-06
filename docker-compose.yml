@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  gpt-telegram-bot:
+    build: .
+    image: todo-list-image
+    restart: always
+    volumes:
+      - ./app_data:/app/data
