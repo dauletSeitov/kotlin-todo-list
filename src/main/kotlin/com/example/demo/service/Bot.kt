@@ -15,6 +15,7 @@ class BotInput(token: String,
         val data = update?.callbackQuery?.data
         if (text != null) {
             when {
+                text.startsWith("/geta") -> taskService.getAll(update.message.chatId)      //get tasks from default list
                 text.startsWith("/get") -> taskService.getList(update.message.chatId)      //get tasks from default list
                 !text.startsWith("/") -> taskService.addTask(text.trim())             //add task
             }

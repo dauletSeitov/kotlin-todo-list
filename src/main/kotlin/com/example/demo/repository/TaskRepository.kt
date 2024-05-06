@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface TaskRepository : JpaRepository<Task, Long> {
 
-    @Query("SELECT t FROM Task t WHERE t.isDeleted is false ORDER BY t.displayOrder")
-    fun getAllNotDeletedOrdered(): List<Task>
+    @Query("SELECT t FROM Task t WHERE t.isDeleted is false AND t.isFinished is false ORDER BY t.displayOrder")
+    fun getAllNotDeletedNotFinishedOrdered(): List<Task>
     @Modifying
     @Query("UPDATE Task t SET t.isFinished = true WHERE t.id = :id")
     fun markAsFinished(@Param("id") id: Long)
